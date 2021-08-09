@@ -36,6 +36,7 @@ jobs:
           git clone $REPO_URL aria2
           cd aria2
           pwd
+          ls -lhAF
 
       - name: 设置 GCC 编译环境
         run: |
