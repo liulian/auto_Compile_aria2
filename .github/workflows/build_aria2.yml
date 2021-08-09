@@ -34,9 +34,6 @@ jobs:
           REPO_URL: https://github.com/aria2/aria2
         run: |
           git clone $REPO_URL aria2
-          cd aria2
-          pwd
-          ls -lhAF
 
       - name: 设置 GCC 编译环境
         run: |
@@ -44,9 +41,11 @@ jobs:
           echo 'CXX=g++-8' >> $GITHUB_ENV
       - name: 设置 autoreconf
         run: |
+          cd aria2
           autoreconf -i
       - name: 设置 Configure
         run: |
+          cd aria2
           ./configure \
             ARIA2_STATIC=yes \
             --with-openssl --without-gnutls --without-appletls --without-wintls \
@@ -55,10 +54,11 @@ jobs:
 
       - name: 开始编译 Aria2
         run: |
+          cd aria2
           make
           make check
       - name : 上传二进制文件
         uses: actions/upload-artifact@master
         with:
           name: aria2_binary
-          path: /home/runner/work/auto_Compile_aria2/aria2/src/aria2c
+          path: /home/runner/work/auto_Compile_aria2/auto_Compile_aria2/aria2/src/aria2c
