@@ -36,6 +36,7 @@ jobs:
         run: |
           git clone $REPO_URL -b $REPO_BRANCH aria2
           cd aria2
+          echo "${pwd}"
 
       - name: 设置 GCC 编译环境
         run: |
