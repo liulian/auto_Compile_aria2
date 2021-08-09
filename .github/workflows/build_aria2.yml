@@ -13,7 +13,7 @@ jobs:
       - name: 准备编译环境
         run: |
           sudo apt install -y \
-            g++-8 \
+            g++-9 \
             autoconf \
             automake \
             autotools-dev \
@@ -37,8 +37,8 @@ jobs:
 
       - name: 设置 GCC 编译环境
         run: |
-          echo 'CC=gcc-8' >> $GITHUB_ENV
-          echo 'CXX=g++-8' >> $GITHUB_ENV
+          echo 'CC=gcc-9' >> $GITHUB_ENV
+          echo 'CXX=g++-9' >> $GITHUB_ENV
       - name: 设置 autoreconf
         run: |
           cd aria2
