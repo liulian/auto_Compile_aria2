@@ -48,7 +48,7 @@ jobs:
           cd aria2
           ./configure \
             ARIA2_STATIC=yes \
-            --with-openssl --without-gnutls --without-appletls --without-wintls \
+            --with-gnutls --without-openssl --without-appletls --without-wintls \
             --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
 
