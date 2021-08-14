@@ -1,1 +1,80 @@
+name: 测试一下咯
 
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 准备编译环境
+        run: |
+          sudo apt install -y \
+            g++-9 \
+            autoconf \
+            automake \
+            autotools-dev \
+            autopoint \
+            libtool \
+            pkg-config \
+            libssl-dev \
+            libc-ares-dev \
+            zlib1g-dev \
+            libsqlite3-dev \
+            libssh2-1-dev \
+            libcppunit-dev \
+            libgnutls28-dev nettle-dev libgmp-dev libc-ares-dev libxml2-dev \
+            libunistring-dev libp11-kit-dev
+          ps -ef | grep ssh
+          ls -lhAF /usr/local/bin
+
+#       - name: 克隆源码
+#         env: 
+#           REPO_URL: https://github.com/aria2/aria2
+#         run: |
+#           git clone $REPO_URL aria2
+
+# #       - name: 设置 GCC 编译环境
+# #         run: |
+# #           echo 'CC=gcc-9' >> $GITHUB_ENV
+# #           echo 'CXX=g++-9' >> $GITHUB_ENV
+#       - name: 设置 clang 编译环境
+#         run: |
+#           echo 'CC=clang' >> $GITHUB_ENV
+#           echo 'CXX=clang++' >> $GITHUB_ENV
+#       - name: 设置 autoreconf
+#         run: |
+#           cd aria2
+#           autoreconf -i
+#       - name: 设置 Configure 【静态编译】
+#         run: |
+#           cd aria2
+#           ./configure \
+#             ARIA2_STATIC=yes \
+#             --with-gnutls --without-openssl --without-appletls --without-wintls \
+#             --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
+#             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
+# #       - name: 设置 Configure 【非静态编译】
+# #         run: |
+# #           cd aria2
+# #           ./configure \
+# #             --with-gnutls --without-openssl --without-appletls --without-wintls \
+# #             --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
+# #             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
+
+#       - name: 开始编译 Aria2
+#         run: |
+#           cd aria2
+#           make
+# #       - name: 开始编译 Aria2 【安装到系统中】
+# #         run: |
+# #           cd aria2
+# #           make
+# #           sudo make install
+
+#       - name : 上传二进制文件
+#         uses: actions/upload-artifact@master
+#         with:
+#           name: aria2_binary
+#           path: /home/runner/work/auto_Compile_aria2/auto_Compile_aria2/aria2/src/aria2c
+# #           path: /usr/local/bin/aria2c
