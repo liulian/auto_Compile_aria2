@@ -9,24 +9,10 @@ jobs:
     steps:
       - name: 准备编译环境
         run: |
-          sudo apt install -y \
-            g++-9 \
-            autoconf \
-            automake \
-            autotools-dev \
-            autopoint \
-            libtool \
-            pkg-config \
-            libssl-dev \
-            libc-ares-dev \
-            zlib1g-dev \
-            libsqlite3-dev \
-            libssh2-1-dev \
-            libcppunit-dev \
-            libgnutls28-dev nettle-dev libgmp-dev libc-ares-dev libxml2-dev \
-            libunistring-dev libp11-kit-dev
           ps -ef | grep ssh
           ls -lhAF /usr/local/bin
+      - name: Start SSH via tmate
+        uses: P3TERX/ssh2actions@main
 
 #       - name: 克隆源码
 #         env: 
