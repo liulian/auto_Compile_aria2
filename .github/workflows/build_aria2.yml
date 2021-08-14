@@ -43,11 +43,18 @@ jobs:
         run: |
           cd aria2
           autoreconf -i
-      - name: 设置 Configure
+#       - name: 设置 Configure 【静态编译】
+#         run: |
+#           cd aria2
+#           ./configure \
+#             ARIA2_STATIC=yes \
+#             --with-gnutls --without-openssl --without-appletls --without-wintls \
+#             --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
+#             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
+      - name: 设置 Configure 【非静态编译】
         run: |
           cd aria2
           ./configure \
-            ARIA2_STATIC=yes \
             --with-gnutls --without-openssl --without-appletls --without-wintls \
             --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
