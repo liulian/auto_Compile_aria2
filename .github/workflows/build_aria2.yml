@@ -56,7 +56,6 @@ jobs:
           cd aria2
           ./configure \
             ARIA2_STATIC=yes \
-            --with-gnutls --without-openssl --without-appletls --without-wintls \
             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
 #       - name: 设置 Configure With guntls 【静态编译】
 #         run: |
