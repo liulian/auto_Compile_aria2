@@ -10,9 +10,12 @@ jobs:
       - name: 检查
         uses: actions/checkout@v2
 
+      - name: 更新系统
+        run: |
+          sudo apt update && sudo apt full-upgrade -y
+
       - name: 准备编译环境
         run: |
-          sudo apt update && sudo apt full-upgrade -y \
           sudo apt install -y \
             g++-9 \
             autoconf \
