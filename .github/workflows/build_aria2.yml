@@ -1,6 +1,10 @@
 name: 编译 Aria2
 
-on: push
+# 文件更改就编译
+# on: push
+
+# 手动运行编译
+on: workflow_dispatch
 
 jobs:
   build:
@@ -10,12 +14,13 @@ jobs:
       - name: 检查
         uses: actions/checkout@v2
 
-      - name: 更新系统
-        run: |
-          sudo apt update && sudo apt full-upgrade -y
+#       - name: 更新系统
+#         run: |
+#           sudo apt update && sudo apt full-upgrade -y
 
       - name: 准备编译环境
         run: |
+          sudo apt update && sudo apt full-upgrade -y
           sudo apt install -y \
             g++-9 \
             autoconf \
@@ -39,11 +44,11 @@ jobs:
         run: |
           git clone $REPO_URL aria2
 
-      - name: 设置 GCC 编译环境
+      - name: 设置 GCC 编译环境 【使用 GCC 进行编译】
         run: |
           echo 'CC=gcc-9' >> $GITHUB_ENV
           echo 'CXX=g++-9' >> $GITHUB_ENV
-#       - name: 设置 clang 编译环境
+#       - name: 设置 clang 编译环境 【使用 Clang 进行编译】
 #         run: |
 #           echo 'CC=clang' >> $GITHUB_ENV
 #           echo 'CXX=clang++' >> $GITHUB_ENV
@@ -97,9 +102,27 @@ jobs:
 #           make
 #           sudo make install
 
+      - name: 开启 SSH 连接
+        uses: P3TERX/ssh2actions@main
+
       - name : 上传二进制文件
         uses: actions/upload-artifact@master
         with:
           name: aria2_binary
           path: /home/runner/work/auto_Compile_aria2/auto_Compile_aria2/aria2/src/aria2c
 #           path: /usr/local/bin/aria2c
+
+      - name: 移除旧的编译文件
+        uses: c-hive/gha-remove-artifacts@v1.2.0
+        with:
+          age: '1 day'
+          skip-recent: 5
+
+#       - name: 移除旧的 Release 发布
+#         uses: dev-drprasad/delete-older-releases@v0.1.0
+#         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+#         with:
+#           keep_latest: 5
+#           delete_tags: true
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
