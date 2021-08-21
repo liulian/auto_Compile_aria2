@@ -56,11 +56,16 @@ jobs:
         run: |
           cd aria2
           autoreconf -i
-      - name: 设置 Configure 【静态编译】
+#       - name: 设置 Configure 【静态编译】
+#         run: |
+#           cd aria2
+#           ./configure \
+#             ARIA2_STATIC=yes \
+#             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
+      - name: 设置 Configure 【非静态编译】
         run: |
           cd aria2
           ./configure \
-            ARIA2_STATIC=yes \
             CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
 #       - name: 设置 Configure With guntls 【静态编译】
 #         run: |
