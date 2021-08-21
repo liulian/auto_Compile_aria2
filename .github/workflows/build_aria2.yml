@@ -107,8 +107,8 @@ jobs:
 #           make
 #           sudo make install
 
-      - name: 开启 SSH 连接
-        uses: P3TERX/ssh2actions@main
+#       - name: 开启 SSH 连接
+#         uses: P3TERX/ssh2actions@main
 
       - name : 上传二进制文件
         uses: actions/upload-artifact@master
